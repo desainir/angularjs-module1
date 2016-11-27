@@ -20,17 +20,34 @@ angular.module('CheckLunch', [])
 	function DisplayResult(string) {
 		 $scope.placeholder = "";
 		var resultVerbage = "";
-		var arrayofItems = string.split(",");
-		
+		$scope.arrayofItems = [];
+		$scope.finalarrayofItems = [];
+		$scope.arrayofItems = string.split(",");
+		var i;
+		var j = 0;
 
-	    if ( (string == $scope.placeholder) ||  
-	    	 (arrayofItems.length == 0) || 
+		for (i=0;i<$scope.arrayofItems.length;i++) {
+			console.log($scope.arrayofItems[i]);
+			if ($scope.arrayofItems[i] !== "") {
+
+				$scope.finalarrayofItems[j] = $scope.arrayofItems[i];
+					console.log ('j =' + j);
+				console.log($scope.finalarrayofItems[j]);
+				console.log($scope.finalarrayofItems.length);
+				j++;
+			}
+
+		}
+
+
+	    if ( (string == $scope.placeholder) ||
+	    	 ($scope.arrayofItems.length == 0) ||
 	    	 (string == "")
 	       ) {
 	       resultVerbage = "Please enter data first" ;
 	       $scope.customStyle.colorClass = "red";
 	        $scope.itemStyle.colorClass = "borderred";
-	    }  else if (arrayofItems.length > 3) {
+	    }  else if ($scope.finalarrayofItems.length > 3) {
 		   resultVerbage = "Too Much!!";
 		   $scope.customStyle.colorClass = "green";
 		   $scope.itemStyle.colorClass = "bordergreen";
